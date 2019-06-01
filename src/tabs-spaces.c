@@ -61,7 +61,7 @@ int view_diff(const char* file_path, int spaces_set) {
     return(0);
 }
 
-int convert_tabs_to_spaces(char* file_path, char** file_out, int spaces_set) {
+int convert_tabs_to_spaces(char* file_path, char** file_out, char* tmp_file, int spaces_set) {
     char line[256];
     int c_line;
     int lines_count = 0;
@@ -80,11 +80,13 @@ int convert_tabs_to_spaces(char* file_path, char** file_out, int spaces_set) {
         return(32);
     }
 
-    fw = fopen(TMP_FILE, "w");
+    if (get_file_w(&fw, tmp_file) != 0) {
+        print_verbosef("Unable to get tmp file: %s\n", tmp_file);
+        return(255);
+    }
     if (fw == NULL) {
-        perror(TMP_FILE);
-        printf("unable to open tmp file: %s\n", TMP_FILE);
-        return(1);
+        print_errorf("PANIC: unable to open tmp file: %s\n", tmp_file);
+        return(255);
     }
 
     print_verbosef("Converting tabs to %d spaces.\n", spaces_set);
@@ -113,15 +115,15 @@ int convert_tabs_to_spaces(char* file_path, char** file_out, int spaces_set) {
 
     int ret_err = 0;
     if (file_out[0] != NULL) {
-        if (gen_output_files(TMP_FILE, file_out) != 0) {
+        if (gen_output_files(tmp_file, file_out) != 0) {
             print_verbosef("Aborting: not removing: %s\n", file_path);
             ret_err = 1;
-            if (copy_file(TMP_FILE, file_path) != 0) return(255);
+            if (copy_file(tmp_file, file_path) != 0) return(255);
         }
         rename(file_path, "/tmp/clint_build.bck");
     } else {
         print_verbosef("Not makeing new file, rewriting old file: %s\n", file_path);
-        if (copy_file(TMP_FILE, file_path) != 0) return(255);
+        if (copy_file(tmp_file, file_path) != 0) return(255);
     }
 
     print_verbosef("Total tabs added: %i\n", total_tab_count);
@@ -135,12 +137,12 @@ int convert_tabs_to_spaces(char* file_path, char** file_out, int spaces_set) {
 }
 
 // tabs_to_spaces
-int tabs_to_spaces(char* file_path, char** file_out, int spaces_set, int diff_view) {
+int tabs_to_spaces(char* file_path, char** file_out, char* tmp_file, int spaces_set, int diff_view) {
     if (diff_view != 0) {
         return(view_diff(file_path, spaces_set));
     }
 
-    return(convert_tabs_to_spaces(file_path, file_out, spaces_set));
+    return(convert_tabs_to_spaces(file_path, file_out, tmp_file, spaces_set));
 }
 
 //

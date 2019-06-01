@@ -12,7 +12,10 @@
 // This software is licensed under a Clear BSD License.
 //
 
-#define CLINT_VERSION "1.0.0-beta-2, May 32, 2019"
+#define CLINT_VERSION "1.0.0-beta-8, Jun 1, 2019"
+
+#define DEFAULT_SPACES 4
+#define DEFAULT_TMP_FILE "/tmp/clint-backup.bck"
 
 #include <stdio.h>
 #include <stdlib.h>

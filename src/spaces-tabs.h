@@ -14,9 +14,7 @@
 
 #include "utils.h"
 
-#define TMP_FILE ".temp.tmp"
-
-int spaces_to_tabs(char*, char**, int, int);
+int spaces_to_tabs(char*, char**, char*, int, int);
 
 //
 // End spaces-taps.h

@@ -14,12 +14,10 @@
 
 #include "file-utils.h"
 
-#define TMP_FILE ".temp.tmp"
-
 // tabs_to_spaces will convert tabs to spaces in file path, int1
 // will set how many spaces to use, int2 if not 0; will view the
 // diff. Returns non 0 if theres a error.
-int tabs_to_spaces(char*, char**, int, int);
+int tabs_to_spaces(char*, char**, char*, int, int);
 
 //
 // End tabs-spaces.h

@@ -1,6 +1,6 @@
 // Created by: WestleyR
 // email: westleyr@nym.hush.com
-// Date: Mat 18, 2019
+// Date: Jun 1, 2019
 // https://github.com/WestleyR/clint
 // version-1.0.0
 //
@@ -11,8 +11,6 @@
 //
 // This software is licensed under a Clear BSD License.
 //
-
-#define DEFAULT_SPACES 4
 
 #include "main-clint.h"
 #include "tabs-spaces.h"
@@ -26,14 +24,15 @@ char* SCRIPT_NAME;
 
 char* help_sort() {
     char* sort_help = "OPTIONS:\n\
-  -h, --help     : print help menu.\n\
-  -v, --verbose  : verbose.\n\
-  -d, --diff     : only print the diff.\n\
-  -t, --tabs     : convert spaces (default 4) to tabs.\n\
-  -s, --spaces   : convert tabs to spaces (default 4).\n\
-  -S, --sset=int : change the spaces setting.\n\
-  -l, --lint     : lint a file.\n\
-  -V, --version  : print version.";
+  -h, --help      : print help menu.\n\
+  -v, --verbose   : verbose.\n\
+  -d, --diff      : only print the diff.\n\
+  -t, --tabs      : convert spaces (default 4) to tabs.\n\
+  -s, --spaces    : convert tabs to spaces (default 4).\n\
+  -S, --sset=int  : change the spaces setting.\n\
+  -T, --tmpf=file : change the temp file path (default /tmp/file*).\n\
+  -l, --lint      : lint a file.\n\
+  -V, --version   : print version.";
 
     return(sort_help);
 }
@@ -72,6 +71,7 @@ int main(int argc, char **argv) {
     }
 
     char *path = NULL;
+    char *tmp_file = DEFAULT_TMP_FILE;
     int diff_view = 0;
     int verbose_print = 0;
     int sp_t = 0;
@@ -91,13 +91,14 @@ int main(int argc, char **argv) {
         {"lint", no_argument, 0, 'l'},
         {"diff", no_argument, 0, 'd'},
         {"sset", required_argument, 0, 'S'},
+        {"tmpf", required_argument, 0, 'T'},
         {"out", required_argument, 0, 'o'},
         {"version", no_argument, 0, 'V'},
         {NULL, 0, 0, 0}
     };
 
 //    while ((opt = getopt_long(argc, argv,":o:S:vVdtsl", long_options, 0)) != -1) {
-    while ((opt = getopt_long(argc, argv,"o:S:vVhdtsl", long_options, 0)) != -1) {
+    while ((opt = getopt_long(argc, argv,"o:T:S:vVhdtsl", long_options, 0)) != -1) {
         switch (opt) {
              case 'v':
                  verbose_print = 1;
@@ -120,7 +121,9 @@ int main(int argc, char **argv) {
              case 'o':
                  file_out[fcount] = optarg;
                  fcount++;
-//                 file_out = optarg;
+                 break;
+             case 'T':
+                 tmp_file = optarg;
                  break;
              case 'V':
                  version_print();
@@ -174,8 +177,10 @@ int main(int argc, char **argv) {
         return(255);
     }
 
+    print_verbosef("main(): Setting tmp file to: %s\n", tmp_file);
+
     if (sp_t != 0) {
-        if (spaces_to_tabs(path, file_out, spaces_set, diff_view) != 0) {
+        if (spaces_to_tabs(path, file_out, tmp_file, spaces_set, diff_view) != 0) {
             print_verbosef("Unable to convert spaces to tabs\n");
             return(255);
         }
@@ -191,7 +196,7 @@ int main(int argc, char **argv) {
     }
 
     if (ts_s != 0) {
-        if (tabs_to_spaces(path, file_out, spaces_set, diff_view) != 0) {
+        if (tabs_to_spaces(path, file_out, tmp_file, spaces_set, diff_view) != 0) {
             print_verbosef("Unable to convert tabs-to-spaces\n");
             return(255);
         }
