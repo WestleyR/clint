@@ -17,6 +17,7 @@
 
 #include "main-clint.h"
 #include "spaces-tabs.h"
+#include "file-utils.h"
 
 #include "logger/logger.h"
 #include "c-utils/c-utils.h"

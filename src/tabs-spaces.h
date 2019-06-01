@@ -12,6 +12,8 @@
 // This software is licensed under a Clear BSD License.
 //
 
+#include "file-utils.h"
+
 #define TMP_FILE ".temp.tmp"
 
 // tabs_to_spaces will convert tabs to spaces in file path, int1

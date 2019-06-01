@@ -18,6 +18,7 @@
 #include "tabs-spaces.h"
 #include "spaces-tabs.h"
 #include "lint-file.h"
+#include "file-utils.h"
 
 #include "arglib/arglib.h"
 #include "logger/logger.h"
