@@ -141,7 +141,6 @@ int convert_spaces_to_tabs(char* file_path, char** file_out, char* tmp_file, int
     fclose(fw);
     fclose(fr);
 
-
     int ret_err = 0;
 
     if (file_out[0] != NULL) {
@@ -154,9 +153,6 @@ int convert_spaces_to_tabs(char* file_path, char** file_out, char* tmp_file, int
     } else {
         print_verbosef("Not makeing new file, rewriting old file: %s\n", file_path);
         if (copy_file(tmp_file, file_path) != 0) return(255);
-//        print_errorf("Unexpected failure: unable to make file: %s\n", file_path);
-//        return(255);
-        //rename(TMP_FILE, file_path);
     }
 
     print_verbosef("Total tabs added: %i\n", total_tab_count);
@@ -171,7 +167,6 @@ int spaces_to_tabs(char* file_path, char** file_out, char* tmp_file, int spaces_
     }
 
     return(convert_spaces_to_tabs(file_path, file_out, tmp_file, spaces_set));
-
 }
 
 //

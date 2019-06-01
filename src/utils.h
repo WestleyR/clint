@@ -1,6 +1,6 @@
 // Created by: WestleyR
 // email: westleyr@nym.hush.com
-// Date: Apr 26, 2019
+// Date: Jun 1, 2019
 // https://github.com/WestleyR/clint
 // version-1.0.0
 //
@@ -21,7 +21,6 @@
 #include <libgen.h>
 #include <dirent.h>
 #include <unistd.h>
-
 
 #include "c-utils/c-utils.h"
 #include "colorc/colorc.h"

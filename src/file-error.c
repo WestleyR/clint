@@ -14,7 +14,6 @@
 
 #include "file-utils.h"
 
-
 int check_error_gen(const char* path) {
     char* dir = dirname(strdup(path));
     if (access(dir, F_OK) != 0) {
