@@ -20,7 +20,6 @@
 #include "lint-file.h"
 #include "file-utils.h"
 
-#include "arglib/arglib.h"
 #include "logger/logger.h"
 
 char* SCRIPT_NAME;
@@ -140,7 +139,7 @@ int main(int argc, char **argv) {
     }
 
     if (argc - optind > 1) {
-        print_errorf("more then one input file; using last one\n");
+        print_warningf("More then one input file; using last one\n");
     }
 
     if (optind < argc) {

@@ -10,7 +10,6 @@
     "file"
   ],
   "dependencies": {
-    "WestleyR/arglib": "1.0.0",
     "WestleyR/colorc": "1.0.3",
     "WestleyR/logger": "1.0.0",
     "WestleyR/c-utils": "1.0.1"
