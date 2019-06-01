@@ -1,0 +1,21 @@
+{
+  "name": "tabspaces",
+  "version": "1.0.0",
+  "repo": "WestleyR/tabspaces",
+  "description": "Convert tabs to spaces and spaces to tabs",
+  "keywords": [
+    "tabs",
+    "spaces",
+    "convert",
+    "file"
+  ],
+  "dependencies": {
+    "WestleyR/arglib": "1.0.0",
+    "WestleyR/colorc": "1.0.3",
+    "WestleyR/logger": "1.0.0",
+    "WestleyR/c-utils": "1.0.1"
+  },
+  "license": "The Clear BSD License",
+  "install": "make install",
+  "uninstall": "make uninstall"
+}

@@ -1,0 +1,9 @@
+{
+  "name": "colorc",
+  "version": "1.0.3",
+  "repo": "WestleyR/colorc",
+  "description": "A Simple Header File To Provide Color Printing",
+  "keywords": ["color", "colorc", "print", "coloring", "header"],
+  "license": "The Clear BSD License",
+  "src": ["src/colorc.h"]
+}
