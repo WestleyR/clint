@@ -1,6 +1,6 @@
 // Created by: WestleyR
 // email: westleyr@nym.hush.com
-// Date: Apr 32, 2019
+// Date: Jun 1, 2019
 // https://github.com/WestleyR/clint
 // version-1.0.0
 //

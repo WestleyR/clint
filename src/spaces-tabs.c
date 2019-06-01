@@ -33,12 +33,11 @@ int tabs_view_diff(const char* file_path, int spaces_set) {
 
     FILE *fr;
     if (get_file(&fr, file_path) != 0) {
-        print_errorf("Failed to get file: %s\n", file_path);
+        print_verbosef("Failed to get file: %s\n", file_path);
         return(1);
     }
-
     if (fr == NULL) {
-        print_errorf("File is NULL\n");
+        print_errorf("PANIC: file is NULL\n");
         return(32);
     }
 
@@ -71,12 +70,11 @@ int convert_spaces_to_tabs(char* file_path, char** file_out, int spaces_set) {
 
     FILE *fr;
     if (get_file(&fr, file_path) != 0) {
-        print_errorf("Failed to get file: %s\n", file_path);
+        print_verbosef("Failed to get file: %s\n", file_path);
         return(1);
     }
-
     if (fr == NULL) {
-        print_errorf("File is NULL\n");
+        print_errorf("PANIC: file is NULL\n");
         return(32);
     }
 

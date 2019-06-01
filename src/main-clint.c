@@ -170,13 +170,13 @@ int main(int argc, char **argv) {
     }
 
     if (file_check_r(path) != 0) {
-        print_verbosef("Failed to get file\n");
+        print_verbosef("main(): Failed to get file\n");
         return(255);
     }
 
     if (sp_t != 0) {
         if (spaces_to_tabs(path, file_out, spaces_set, diff_view) != 0) {
-            print_errorf("Unable to convert spaces to tabs\n");
+            print_verbosef("Unable to convert spaces to tabs\n");
             return(255);
         }
         return(0);
@@ -184,7 +184,7 @@ int main(int argc, char **argv) {
 
     if (lint != 0) {
         if (lint_file(path, diff_view) != 0) {
-            print_errorf("Unable to lint file\n");
+            print_verbosef("Unable to lint file\n");
             return(255);
         }
         return(0);
@@ -192,7 +192,7 @@ int main(int argc, char **argv) {
 
     if (ts_s != 0) {
         if (tabs_to_spaces(path, file_out, spaces_set, diff_view) != 0) {
-            print_errorf("Unable to convert tabs-to-spaces\n");
+            print_verbosef("Unable to convert tabs-to-spaces\n");
             return(255);
         }
     }

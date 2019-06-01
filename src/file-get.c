@@ -17,13 +17,13 @@
 int get_file(FILE** file, const char* path) {
     *file = fopen(path, "r");
 
-    if (file == NULL) {
-        print_errorf("unable to open file: %s: %s\n", path, strerror(errno));
-//        printf("Couldn't open file: %s\n", path);
-//        perror(path);
-        return(1);
-    }
 
+    if (*file == NULL) {
+        if (file_check_r(path) != 0) return(255);
+        print_errorf("Unexpected failure: unable to open file: %s\n", path);
+        return(255);
+    }
+/*
     struct stat info;
     if (lstat(path, &info) != 0) {
         print_errorf("unable to open stat on: %s\n", path);
@@ -37,16 +37,20 @@ int get_file(FILE** file, const char* path) {
         return(-1);
     }
 //    fclose(*file);
-
+*/
     return(0);
 }
 
 int get_file_w(FILE** file, const char* path) {
     *file = fopen(path, "w");
 
-    if (file == NULL) {
+    if (*file == NULL) {
+        if (file_check_w(path) != 0) return(255);
+        print_errorf("Unexpected failure: unable to open file: %s\n", path);
+        return(255);
+
         //print_errorf("unable to open file: %s: %s\n", path, strerror(errno));
-        char* dir = dirname(strdup(path));
+/*        char* dir = dirname(strdup(path));
         if (access(dir, F_OK) != 0) {
             print_errorf("%s: No such file or directory\n", dir);
             return(-1);
@@ -56,7 +60,7 @@ int get_file_w(FILE** file, const char* path) {
             return(-1);
         }
         print_errorf("Unexpected failure, cant create file\n");
-        return(-1);
+        return(-1);*/
     }
 
     return(0);

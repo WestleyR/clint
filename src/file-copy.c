@@ -1,6 +1,6 @@
 // Created by: WestleyR
 // email: westleyr@nym.hush.com
-// Date: Apr 32, 2019
+// Date: Jun 1, 2019
 // https://github.com/WestleyR/clint
 // version-1.0.0
 //
@@ -19,24 +19,8 @@ int copy_file(const char* file1, const char* file2) {
     FILE* f2;
     char ch;
 
-    errno = 0;
-
-//    print_verbosef("Copying file from: %s to: %s...\n", file1, file2);
-
-    if (get_file(&f1, file1) != 0) {
-        //print_debugf("unable to get file: %s: %s\n", file1, strerror(errno));
-        return(255);
-    }
-
-/*    f2 = fopen(file2, "w");
-    if (f2 == NULL) {
-        fclose(f1);
-        print_errorf("copy_file: unable to open file: %s: %s\n", file2, strerror(errno));
-        return(errno);
-    }*/
-
+    if (get_file(&f1, file1) != 0) return(255);
     if (make_file_w(file2) != 0) return(255);
-
     if (get_file_w(&f2, file2) != 0) return(255);
 
     while ((ch = fgetc(f1)) != EOF) {

@@ -1,6 +1,6 @@
 // Created by: WestleyR
 // email: westleyr@nym.hush.com
-// Date: Apr 32, 2019
+// Date: Jun 1, 2019
 // https://github.com/WestleyR/clint
 // version-1.0.0
 //
@@ -44,6 +44,8 @@ int make_file_w(const char*);
 
 int gen_output_files(const char*, char**);
 
+// will find why a file could not be made to the path.
+int check_error_gen(const char*);
 
 //
 // End file-utils.c
