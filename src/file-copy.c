@@ -19,9 +19,15 @@ int copy_file(const char* file1, const char* file2) {
     FILE* f2;
     char ch;
 
-    if (get_file(&f1, file1) != 0) return(255);
-    if (make_file_w(file2) != 0) return(255);
-    if (get_file_w(&f2, file2) != 0) return(255);
+    if (get_file(&f1, file1) != 0) {
+        print_verbosef("copy_file(): unable to open file: %s\n", file1);
+        return(255);
+    }
+//    if (make_file_w(file2) != 0) return(255);
+    if (get_file_w(&f2, file2) != 0) {
+        print_verbosef("copy_file(): unable to open file: %s\n", file2);
+        return(255);
+    }
 
     while ((ch = fgetc(f1)) != EOF) {
         if (ch == EOF) break;

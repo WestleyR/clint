@@ -46,7 +46,7 @@ int get_file_w(FILE** file, const char* path) {
 
     if (*file == NULL) {
         if (file_check_w(path) != 0) return(255);
-        print_errorf("Unexpected failure: unable to open file: %s\n", path);
+        print_errorf("get_file_w(): Unexpected failure: unable to open file: %s\n", path);
         return(255);
 
         //print_errorf("unable to open file: %s: %s\n", path, strerror(errno));

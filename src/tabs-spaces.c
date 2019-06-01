@@ -109,20 +109,19 @@ int convert_tabs_to_spaces(char* file_path, char** file_out, int spaces_set) {
     fclose(fw);
 //    remove(file_path);
 
-
-    rename(file_path, "/tmp/clint_build.bck");
+//    rename(file_path, "/tmp/clint_build.bck");
 
     int ret_err = 0;
-
     if (file_out[0] != NULL) {
         if (gen_output_files(TMP_FILE, file_out) != 0) {
             print_verbosef("Aborting: not removing: %s\n", file_path);
             ret_err = 1;
             if (copy_file(TMP_FILE, file_path) != 0) return(255);
         }
+        rename(file_path, "/tmp/clint_build.bck");
     } else {
         print_verbosef("Not makeing new file, rewriting old file: %s\n", file_path);
-        rename(TMP_FILE, file_path);
+        if (copy_file(TMP_FILE, file_path) != 0) return(255);
     }
 
     print_verbosef("Total tabs added: %i\n", total_tab_count);

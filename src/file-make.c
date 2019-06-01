@@ -17,29 +17,15 @@
 int make_file_w(const char* fname) {
     char *path = strdup(fname);
 
-    print_verbosef("Makeing writable file at: %s\n", path);
+    print_verbosef("make_file_w(): Making/emptying writable file at: %s\n", path);
 
-    if (access(path, F_OK) == 0) {
-        if (access(path, R_OK) != 0) {
-            print_errorf("%s: Is not readable\n", path);
-            return(-1);
-        }
-    }
-
-    FILE *file = fopen(path, "w");
-    if (file == NULL) {
-        print_verbosef("FATAL: Unexpected failure when opening file: %s\n", path);
-        if (check_error_gen(path) != 0) return (255);
-        print_errorf("Unexpected failure: cant create file: %s\n", path);
+    if (make_file_w(path) != 0) {
+        if (check_error_gen(path) != 0) return(-1);
+        print_errorf("make_file_w(): unexpected error: unable to make/clean file: %s\n", path);
         return(-1);
     }
-    if (access(path, W_OK) != 0) {
-        print_errorf("%s: Created file is not writable\n", path);
-        return(-1);
-    }
-    fclose(file);
 
-    // Success! file (path) created, and is writable!
+    // Success! file (path) created/cleaned, and is writable!
     return(0);
 }
 
