@@ -192,7 +192,7 @@ int main(int argc, char **argv) {
     }
 
     if (ts_s != 0) {
-        if (tabs_to_spaces(path, spaces_set, diff_view) != 0) {
+        if (tabs_to_spaces(path, file_out, spaces_set, diff_view) != 0) {
             print_errorf("Unable to convert tabs-to-spaces\n");
             return(255);
         }

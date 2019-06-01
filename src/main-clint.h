@@ -1,6 +1,6 @@
 // Created by: WestleyR
 // email: westleyr@nym.hush.com
-// Date: May 29, 2019
+// Date: May 32, 2019
 // https://github.com/WestleyR/clint
 // version-1.0.0
 //
@@ -12,7 +12,7 @@
 // This software is licensed under a Clear BSD License.
 //
 
-#define CLINT_VERSION "1.0.0-beta-1, May 31, 2019"
+#define CLINT_VERSION "1.0.0-beta-2, May 32, 2019"
 
 #include <stdio.h>
 #include <stdlib.h>
