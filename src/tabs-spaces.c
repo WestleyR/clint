@@ -55,7 +55,7 @@ int view_diff(const char* file_path, int spaces_set) {
     }
     fclose(fr);
 
-    printf("\n");
+//    printf("\n");
     print_verbosef("Total tabs in %s: %i\n", file_path, tab_count);
 
     return(0);
