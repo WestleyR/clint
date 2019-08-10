@@ -1,0 +1,42 @@
+# Created by: WestleyR
+# email: westleyr@nym.hush.com
+# Date: Aug 10, 2019
+# https://github.com/WestleyR/clint
+# version-1.0.3
+#
+# The Clear BSD License
+#
+# Copyright (c) 2019 WestleyR
+# All rights reserved.
+#
+# This software is licensed under a Clear BSD License.
+#
+
+set -e
+
+if [ ! $(command -v "clint") ]; then
+	echo "ERROR: 'clint' not found in PATH, you should install clint"
+	exit 1
+fi
+
+echo "Running all tests..."
+echo
+
+cd tests/
+
+test_files=`ls`
+
+for t in $test_files; do
+	if [ -f "${t}" ]; then
+		echo -n "Running test: ${t} ... "
+		perl "${t}"
+		#echo "\033[0;32mDONE\033[0m"
+	fi
+done
+
+echo
+echo "All tests passed!"
+
+#
+# End run-tests
+#

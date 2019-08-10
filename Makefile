@@ -1,8 +1,8 @@
 # Created by: WestleyR
 # email: westleyr@nym.hush.com
-# Date: Apr 26, 2019
+# Date: Aug 10, 2019
 # https://github.com/WestleyR/clint
-# version-1.0.2
+# version-1.0.3
 #
 # The Clear BSD License
 #
@@ -60,16 +60,16 @@ clean:
 	rm -f $(OBJS)
 
 .PHONY:
+test: $(TARGET)
+	@sh run-tests
+
+.PHONY:
 cleanall:
 	rm -f $(TARGET) $(OBJS)
 
 .PHONY:
 install: $(TARGET)
 	cp -f $(TARGET) $(PREFIX)
-
-.PHONY:
-test: $(TARGET)
-	./tests/tests-sh
 
 .PHONY:
 uninstall: $(PREFIX)/$(TARGET)

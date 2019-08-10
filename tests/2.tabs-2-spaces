@@ -1,0 +1,38 @@
+use strict;
+use warnings;
+
+my $tmp_file = `mktemp`;
+
+# copy the file
+system("cp testdata/dummy_tab.c $tmp_file");
+
+# declear, and run the command
+my $cmd = "clint -s $tmp_file";
+system("$cmd");
+
+# the actral results
+my $got = `cat $tmp_file`;
+
+# the expected results
+my $expect = << 'END_MESSAGE';
+
+#include <stdio.h>
+
+int main() {
+    printf("Test\n");
+
+    return(0);
+}
+END_MESSAGE
+
+if ("$got" ne "$expect") {
+	print("FAIL:\n");
+	print("failed while running: '$cmd'\nexpect: '$expect'\ngot: '$got'\n");
+	exit(1)
+}
+
+print("DONE\n");
+
+#
+# End
+#
