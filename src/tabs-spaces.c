@@ -1,6 +1,6 @@
 // Created by: WestleyR
 // email: westleyr@nym.hush.com
-// Date: May 18, 2019
+// Date: Aug 10, 2019
 // https://github.com/WestleyR/clint
 // version-1.0.1
 //
@@ -61,7 +61,7 @@ int view_diff(const char* file_path, int spaces_set) {
     return(0);
 }
 
-int convert_tabs_to_spaces(char* file_path, char** file_out, char* tmp_file, int spaces_set) {
+int convert_tabs_to_spaces(char* file_path, char** file_out, int del_aft_output, char* tmp_file, int spaces_set) {
     char line[256];
     int c_line;
     int lines_count = 0;
@@ -120,7 +120,7 @@ int convert_tabs_to_spaces(char* file_path, char** file_out, char* tmp_file, int
             ret_err = 1;
             if (copy_file(tmp_file, file_path) != 0) return(255);
         }
-        rename(file_path, "/tmp/clint_build.bck");
+        if (del_aft_output != 0) rename(file_path, "/tmp/clint_build.bck");
     } else {
         print_verbosef("Not makeing new file, rewriting old file: %s\n", file_path);
         if (copy_file(tmp_file, file_path) != 0) return(255);
@@ -137,12 +137,12 @@ int convert_tabs_to_spaces(char* file_path, char** file_out, char* tmp_file, int
 }
 
 // tabs_to_spaces
-int tabs_to_spaces(char* file_path, char** file_out, char* tmp_file, int spaces_set, int diff_view) {
+int tabs_to_spaces(char* file_path, char** file_out, int del_aft_output, char* tmp_file, int spaces_set, int diff_view) {
     if (diff_view != 0) {
         return(view_diff(file_path, spaces_set));
     }
 
-    return(convert_tabs_to_spaces(file_path, file_out, tmp_file, spaces_set));
+    return(convert_tabs_to_spaces(file_path, file_out, del_aft_output, tmp_file, spaces_set));
 }
 
 //

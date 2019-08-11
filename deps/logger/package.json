@@ -1,6 +1,6 @@
 {
   "name": "logger",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "repo": "WestleyR/logger",
   "description": "Verry simple c logger and message printer",
   "keywords": ["logger", "message", "error", "verbose", "warning"],

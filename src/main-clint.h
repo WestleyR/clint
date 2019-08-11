@@ -1,6 +1,6 @@
 // Created by: WestleyR
 // email: westleyr@nym.hush.com
-// Date: Jun 7, 2019
+// Date: Aug 10, 2019
 // https://github.com/WestleyR/clint
 // version-1.0.0
 //
@@ -12,7 +12,7 @@
 // This software is licensed under a Clear BSD License.
 //
 
-#define CLINT_VERSION "1.0.0-beta-10, Jun 7, 2019"
+#define CLINT_VERSION "1.0.0-beta-12, Aug 10, 2019"
 
 #define DEFAULT_SPACES 4
 #define DEFAULT_TMP_FILE "/tmp/clint-backup.bck"

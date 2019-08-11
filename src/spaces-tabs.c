@@ -1,6 +1,6 @@
 // Created by: WestleyR
 // email: westleyr@nym.hush.com
-// Date: Apr 4, 2019
+// Date: Aug 10, 2019
 // https://github.com/WestleyR/clint
 // version-1.0.0
 //
@@ -65,7 +65,7 @@ int tabs_view_diff(const char* file_path, int spaces_set) {
     return(0);
 }
 
-int convert_spaces_to_tabs(char* file_path, char** file_out, char* tmp_file, int spaces_set) {
+int convert_spaces_to_tabs(char* file_path, char** file_out, int del_aft_output, char* tmp_file, int spaces_set) {
     print_verbosef("Converting %i spaces to tabs\n", spaces_set);
 
     FILE *fr;
@@ -149,7 +149,7 @@ int convert_spaces_to_tabs(char* file_path, char** file_out, char* tmp_file, int
             ret_err = 1;
             if (copy_file(tmp_file, file_path) != 0) return(255);
         }
-        rename(file_path, "/tmp/clint_build.bck");
+        if (del_aft_output != 0) rename(file_path, "/tmp/clint_build.bck");
     } else {
         print_verbosef("Not makeing new file, rewriting old file: %s\n", file_path);
         if (copy_file(tmp_file, file_path) != 0) return(255);
@@ -161,12 +161,12 @@ int convert_spaces_to_tabs(char* file_path, char** file_out, char* tmp_file, int
 }
 
 // tabs_to_spaces ...
-int spaces_to_tabs(char* file_path, char** file_out, char* tmp_file, int spaces_set, int diff_view) {
+int spaces_to_tabs(char* file_path, char** file_out, int del_aft_output, char* tmp_file, int spaces_set, int diff_view) {
     if (diff_view != 0) {
         return(tabs_view_diff(file_path, spaces_set));
     }
 
-    return(convert_spaces_to_tabs(file_path, file_out, tmp_file, spaces_set));
+    return(convert_spaces_to_tabs(file_path, file_out, del_aft_output, tmp_file, spaces_set));
 }
 
 //

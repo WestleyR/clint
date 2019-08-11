@@ -11,7 +11,7 @@
   ],
   "dependencies": {
     "WestleyR/colorc": "1.0.3",
-    "WestleyR/logger": "1.0.0",
+    "WestleyR/logger": "v1.0.2",
     "WestleyR/c-utils": "1.0.1"
   },
   "license": "The Clear BSD License",
