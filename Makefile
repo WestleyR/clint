@@ -1,8 +1,8 @@
 # Created by: WestleyR
 # email: westleyr@nym.hush.com
-# Date: Aug 10, 2019
+# Date: Nov 9, 2019
 # https://github.com/WestleyR/clint
-# version-1.0.3
+# version-1.0.4
 #
 # The Clear BSD License
 #
@@ -13,7 +13,7 @@
 #
 
 # where to install
-PREFIX = /usr/local/bin
+PREFIX = /usr/local
 
 # your c compiler
 CC = gcc
@@ -69,7 +69,8 @@ cleanall:
 
 .PHONY:
 install: $(TARGET)
-	cp -f $(TARGET) $(PREFIX)
+	mkdir -p $(PREFIX)/bin
+	cp -f $(TARGET) $(PREFIX)/bin
 
 .PHONY:
 uninstall: $(PREFIX)/$(TARGET)
